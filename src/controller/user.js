@@ -20,7 +20,11 @@ async function create(req, res) {
   }
 
   try {
-    const user = await prisma.user.create({ data: { name, password } });
+    const {
+      password: _,
+      deleted: __,
+      ...user
+    } = await prisma.user.create({ data: { name, password } });
     const token = jwt.sign(user, process.env.JWT_SECRET, { expiresIn: "7d" });
 
     return res
@@ -45,9 +49,14 @@ async function create(req, res) {
 
 async function view(req, res) {
   try {
-    const { password: _, ...user } = await prisma.user.findUnique({
+    const {
+      password: _,
+      deleted: __,
+      ...user
+    } = await prisma.user.findFirst({
       where: {
         id: req.user.id,
+        deleted: false,
       },
       include: {
         posts: true,
