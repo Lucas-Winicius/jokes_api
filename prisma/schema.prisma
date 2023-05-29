@@ -22,9 +22,8 @@ model Post {
 
 model User {
   id        String   @id @default(auto()) @map("_id") @db.ObjectId
-  email     String   @unique
+  name      String   @unique
   password  String
-  name      String
   posts     Post[]
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
