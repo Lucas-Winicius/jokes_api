@@ -43,6 +43,23 @@ async function create(req, res) {
   }
 }
 
+async function view(req, res) {
+  try {
+    const { password: _, ...user } = await prisma.user.findUnique({
+      where: {
+        id: req.user.id,
+      },
+      include: {
+        posts: true,
+      },
+    });
+    res.json(user);
+  } catch (e) {
+    console.log(e);
+  }
+}
+
 module.exports = {
   create,
+  view,
 };
