@@ -59,7 +59,14 @@ async function view(req, res) {
   }
 }
 
+async function update(req, res) {
+  res
+    .status(405)
+    .json({ status: 405, message: "Method temporarily unavailable." });
+}
+
 module.exports = {
   create,
   view,
+  update,
 };
