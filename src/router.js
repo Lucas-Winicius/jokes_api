@@ -8,5 +8,6 @@ const routes = express.Router();
 routes.post("/user", userMethods.create);
 routes.get("/user", jwtMiddleware, userMethods.view);
 routes.patch("/user", jwtMiddleware, userMethods.update);
+routes.delete("/user", jwtMiddleware, userMethods.deleteUser);
 
 module.exports = routes;

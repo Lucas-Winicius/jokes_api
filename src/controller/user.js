@@ -74,8 +74,31 @@ async function update(req, res) {
     .json({ status: 405, message: "Method temporarily unavailable." });
 }
 
+async function deleteUser(req, res) {
+  try {
+    const updatedUser = await prisma.user.update({
+      where: { id: req.user.id },
+      data: { deleted: true },
+    });
+
+    res
+      .status(200)
+      .cookie(process.env.COOKIE_NAME, "0", {
+        maxAge: 0,
+        path: "/",
+        secure: false,
+        httpOnly: true,
+        sameSite: "strict",
+      })
+      .json(updatedUser);
+  } catch (e) {
+    res.send(500).json({ status: 500, message: "Internal error." });
+  }
+}
+
 module.exports = {
   create,
   view,
   update,
+  deleteUser,
 };
