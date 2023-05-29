@@ -24,6 +24,35 @@ async function create(req, res) {
   }
 }
 
+async function view(req, res) {
+  try {
+    const post = await prisma.post.findUnique({
+      where: {
+        id: req.params.id,
+      },
+      include: {
+        author: {
+          select: {
+            id: true,
+            name: true,
+            createdAt: true,
+            updatedAt: true,
+          },
+        },
+      },
+    });
+
+    if (!post) {
+      return res.send(404).json({ status: 404, message: "Post not found." });
+    }
+
+    return res.status(200).json(post);
+  } catch (e) {
+    return res.status(500).json({ status: 500, message: e.message });
+  }
+}
+
 module.exports = {
   create,
+  view,
 };

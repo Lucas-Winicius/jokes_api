@@ -18,5 +18,6 @@ routes.delete("/session", sessionMethods.logout);
 
 // POST METHODS
 routes.post("/post", jwtMiddleware, postMethods.create);
+routes.get("/post/:id", jwtMiddleware, postMethods.view);
 
 module.exports = routes;
