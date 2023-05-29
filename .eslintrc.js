@@ -12,6 +12,6 @@ module.exports = {
   rules: {
     "import/no-extraneous-dependencies": "off",
     quotes: ["error", "double", { allowTemplateLiterals: true }],
-    "no-console": off
+    "no-console": "off",
   },
 };
