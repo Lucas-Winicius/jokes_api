@@ -44,6 +44,20 @@ async function login(req, res) {
   }
 }
 
+function logout(req, res) {
+  return res
+    .status(200)
+    .cookie(process.env.COOKIE_NAME, "0", {
+      maxAge: 0,
+      path: "/",
+      secure: false,
+      httpOnly: true,
+      sameSite: "strict",
+    })
+    .json({ status: 200, message: "Logged out successfully." });
+}
+
 module.exports = {
   login,
+  logout,
 };

@@ -13,5 +13,6 @@ routes.delete("/user", jwtMiddleware, userMethods.deleteUser);
 
 // SESSION METHODS
 routes.post("/session", sessionMethods.login);
+routes.delete("/session", sessionMethods.logout);
 
 module.exports = routes;
