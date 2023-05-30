@@ -74,8 +74,16 @@ async function update(req, res) {
 }
 
 async function deleteMethod(req, res) {
-  console.log("EBA");
-  res.send("SIM");
+  try {
+    const { deleted: _, ...updatedPost } = await prisma.post.update({
+      where: { id: req.params.id },
+      data: { deleted: true },
+    });
+
+    return res.status(200).json(updatedPost);
+  } catch (e) {
+    return res.status(500).json({ status: 500, message: e.message });
+  }
 }
 
 module.exports = {
