@@ -26,7 +26,7 @@ async function home(req, res) {
     return res.status(200).json(posts);
   } catch (e) {
     console.log(e);
-    return res.send(500).json({ status: 500, message: "Internal error." });
+    return res.status(500).json({ status: 500, message: "Internal error." });
   }
 }
 
