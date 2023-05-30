@@ -6,7 +6,9 @@
   "scripts": {
     "lint": "eslint .",
     "format": "prettier --write .",
-    "start:dev": "nodemon"
+    "build": "npx prisma generate",
+    "start:dev": "nodemon",
+    "start": "node index.js"
   },
   "keywords": [],
   "author": "",
