@@ -60,21 +60,6 @@ async function update(req, res) {
   };
 
   try {
-    const post = await prisma.post.findFirst({
-      where: {
-        authorId: req.user.id,
-        id: req.params.id,
-      },
-    });
-
-    if (!post) {
-      return res.status(404).json({
-        status: 404,
-        message:
-          "Unable to edit. Please verify if this post belongs to you or if it exists.",
-      });
-    }
-
     const postUpdated = await prisma.post.update({
       where: {
         id: req.params.id,
@@ -88,8 +73,14 @@ async function update(req, res) {
   }
 }
 
+async function deleteMethod(req, res) {
+  console.log("EBA");
+  res.send("SIM");
+}
+
 module.exports = {
   create,
   view,
   update,
+  delete: deleteMethod,
 };
