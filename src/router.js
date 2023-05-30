@@ -9,7 +9,7 @@ const checkOwner = require("./middleware/checkOwner");
 const routes = express.Router();
 
 // HOME METHODS
-routes.get("/", homeMethods)
+routes.get("/", homeMethods);
 
 // USER METHODS
 routes.post("/user", userMethods.create);
