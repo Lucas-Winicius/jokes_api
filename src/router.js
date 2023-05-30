@@ -2,10 +2,14 @@ const express = require("express");
 const userMethods = require("./controller/user");
 const sessionMethods = require("./controller/session");
 const postMethods = require("./controller/post");
+const homeMethods = require("./controller/home");
 const jwtMiddleware = require("./middleware/jwt");
 const checkOwner = require("./middleware/checkOwner");
 
 const routes = express.Router();
+
+// HOME METHODS
+routes.get("/", homeMethods)
 
 // USER METHODS
 routes.post("/user", userMethods.create);
