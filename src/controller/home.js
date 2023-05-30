@@ -1,7 +1,7 @@
 const prisma = require("../lib/prisma");
 
 async function home(req, res) {
-  const pageNumber = req.query?.pageNumber || 1;
+  const pageNumber = req.query?.page || 1;
   try {
     const posts = await prisma.post.findMany({
       include: {
