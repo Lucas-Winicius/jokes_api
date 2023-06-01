@@ -8,7 +8,8 @@
     "format": "prettier --write .",
     "build": "npx prisma generate",
     "start:dev": "nodemon",
-    "start": "node index.js"
+    "start": "node index.js",
+    "vercel-build": "prisma generate"
   },
   "keywords": [],
   "author": "",
